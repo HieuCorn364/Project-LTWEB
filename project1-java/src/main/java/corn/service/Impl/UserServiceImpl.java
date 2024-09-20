@@ -19,5 +19,15 @@ public class UserServiceImpl implements IUserService {
 		List<UserEntity> list = userRepository.getUserByNameAndPassword(userName, passWord);
 		return list.size() > 0 ? true : false;
 	}
+	@Override
+	public boolean checkTrungTenDangNhap(String userName) {
+		userRepository.getUserNameToCheck(userName);
+		return false;
+	}
+	@Override
+	public void taoTaoKhoanMoi() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

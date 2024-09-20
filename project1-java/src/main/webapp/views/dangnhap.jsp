@@ -4,61 +4,68 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Đăng nhập</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+	integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+	crossorigin="anonymous"></script>
 <style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	margin: 0;
-}
-
-.login-container {
-	background: #fff;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	width: 300px;
-}
-
-.login-container h2 {
-	margin: 0 0 20px 0;
-}
-
-.login-container input {
-	width: 100%;
-	padding: 10px;
-	margin: 5px 0;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-}
-
-.login-container input[type="submit"] {
-	background-color: #28a745;
-	color: #fff;
-	border: none;
-	cursor: pointer;
-}
-
-.login-container input[type="submit"]:hover {
-	background-color: #218838;
+.red {
+	color: red;
 }
 </style>
+<%
+String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+		+ request.getContextPath();
+%>
+<link href="<%=url%>/css/signin.css" rel="stylesheet">
 </head>
 <body>
-	<div class="login-container">
-		<h2>Đăng Nhập</h2>
-		<form action="login" method="post">
-			<label for="username">Tài khoản:</label> 
-				<input type="text" id="username" name ="username" required> 
-			<label for="password">Mật khẩu:</label> 
-				<input type="password" id="password" name="password" required> 
-			<input type="submit" value="Đăng Nhập">
+	<main class="form-signin w-100 m-auto">
+		<form class="text-center" action="login" method="POST">
+			<img class="mb-4" alt="" width="72">
+			<h1 class="h3 mb-3 fw-normal">ĐĂNG NHẬP</h1>
+			<%
+			String baoLoi = request.getAttribute("baoLoi") + "";
+			if (baoLoi.equals("null")) {
+				baoLoi = "";
+			}
+			%>
+			<div class="text-center">
+				<span class="red"><%=baoLoi%></span>
+			</div>
+			<div class="form-floating">
+				<input type="text" class="form-control" id="username"
+					placeholder="Tên đăng nhập" name="username"> <label
+					for="username">Tên đăng nhập</label>
+			</div>
+			<div class="form-floating">
+				<input type="password" class="form-control" id="password"
+					placeholder="Mật khẩu" name="password"> <label
+					for="password">Mật khẩu</label>
+			</div>
+
+			<div class="checkbox mb-3">
+				<label> <input type="checkbox" value="remember-me">
+					Ghi nhớ tài khoản này
+				</label>
+			</div>
+			<button class="w-100 btn btn-lg btn-primary" type="submit">Đăng
+				nhập</button>
+			<a href="<%=url%>/views/login.jsp">Đăng ký tài khoản mới</a>
+			<p class="mt-5 mb-3 text-muted">&copy; Ngô Trung Hiếu</p>
 		</form>
-	</div>
+	</main>
 </body>
 </html>
-

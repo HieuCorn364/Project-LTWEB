@@ -12,7 +12,7 @@ import corn.entity.UserEntity;
 import corn.repository.IUserRepository;
 
 public class UserRepositoryImpl implements IUserRepository {
-	public List<UserEntity> getUserByNameAndPassword(String userName, String passWord){
+	public List<UserEntity> getUserByNameAndPassword(String userName, String passWord) {
 		List<UserEntity> users = new ArrayList<UserEntity>();
 		Connection connection = MySQLConnection.getConnection();
 		String query = "select * from user u where u.username = ? and u.password = ?";
@@ -26,7 +26,6 @@ public class UserRepositoryImpl implements IUserRepository {
 				user.setId(resultSet.getLong("id"));
 				user.setFullName(resultSet.getString("fullname"));
 				user.setUserName(resultSet.getString("username"));
-				user.setAge(resultSet.getLong("age"));
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -48,7 +47,7 @@ public class UserRepositoryImpl implements IUserRepository {
 		String sql = "SELECT * FROM User where username = ?";
 		Connection connection = MySQLConnection.getConnection();
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(sql); 
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, userName);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			UserEntity user = new UserEntity();
@@ -56,7 +55,6 @@ public class UserRepositoryImpl implements IUserRepository {
 				user.setId(resultSet.getLong("id"));
 				user.setFullName(resultSet.getString("fullname"));
 				user.setUserName(resultSet.getString("username"));
-				user.setAge(resultSet.getLong("age"));
 			}
 			return user;
 		} catch (SQLException e) {
@@ -71,5 +69,33 @@ public class UserRepositoryImpl implements IUserRepository {
 		return null;
 	}
 
-	
+	@Override
+	public boolean getUserNameToCheck(String userName) {
+		boolean ketQua = false;
+		Connection con = MySQLConnection.getConnection();
+		try {
+			
+			String sql = "SELECT * FROM user WHERE username=?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, userName);
+
+			System.out.println(sql);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				ketQua = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return ketQua;
+	}
+
 }
