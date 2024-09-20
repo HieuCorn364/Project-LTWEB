@@ -32,20 +32,38 @@ public class RegisterController extends HttpServlet {
 		String matKhauNhapLai = req.getParameter("matKhauNhapLai");
 		String hoVaTen = req.getParameter("hoVaTen");
 		String gioiTinh = req.getParameter("gioiTinh");
-		String diaChiKhachHang = req.getParameter("diaChiKhachHang");
+		String diaChi = req.getParameter("diaChiKhachHang");
 		String dienThoai = req.getParameter("dienThoai");
 		String email = req.getParameter("email");
 		req.setAttribute("tenDangNhap", tenDangNhap);		
 		req.setAttribute("hoVaTen", hoVaTen);
 		req.setAttribute("gioiTinh", gioiTinh);
-		req.setAttribute("diaChiKhachHang", diaChiKhachHang);
+		req.setAttribute("diaChiKhachHang", diaChi);
 		req.setAttribute("dienThoai", dienThoai);
 		
 		String url = "";
 		
 		String baoLoi = "";
 		
-		userService.checkTrungTenDangNhap(tenDangNhap);
+		if(userService.checkTrungTenDangNhap(tenDangNhap)) {
+			baoLoi +="Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác.<br/>";
+		}
+		
+		if(!matKhau.equals(matKhauNhapLai)) {
+			baoLoi +="Mẫu khẩu không khớp.<br/>";
+		}
+		
+		req.setAttribute("baoLoi", baoLoi);
+		
+		if(baoLoi.length()>0) {
+			url = "/views/dangky.jsp";
+		}
+		else {
+			userService.taoTaoKhoanMoi(tenDangNhap, matKhau, hoVaTen, gioiTinh, diaChi, dienThoai, email);
+			url = "/views/dangnhap.jsp";
+		}
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+		rd.forward(req, resp);
 		
 	}
 	

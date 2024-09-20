@@ -5,8 +5,50 @@ public class UserEntity {
 	private String fullName;
 	private String userName;
 	private String passWord;
-	private Long age;
+	private String sex;
+	private String phone;
+	private String address;
+	private String email;
 	private String createDate;
+	
+	
+	public UserEntity() {
+		
+	}
+	public UserEntity(String fullName, String userName, String passWord, String sex, String phone, String address,
+			String email) {
+		this.fullName = fullName;
+		this.userName = userName;
+		this.passWord = passWord;
+		this.sex = sex;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -30,12 +72,6 @@ public class UserEntity {
 	}
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
-	}
-	public Long getAge() {
-		return age;
-	}
-	public void setAge(Long age) {
-		this.age = age;
 	}
 	public String getCreateDate() {
 		return createDate;

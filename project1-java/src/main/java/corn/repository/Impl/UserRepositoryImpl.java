@@ -98,4 +98,28 @@ public class UserRepositoryImpl implements IUserRepository {
 		return ketQua;
 	}
 
+	@Override
+	public void insertUser(UserEntity userEntity) {
+		try {
+			Connection con = MySQLConnection.getConnection();
+			String sql = "INSERT INTO user (username, password, fullname, sex, address, phone, email) "
+					+ " VALUES (?,?,?,?,?,?,?)";
+
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, userEntity.getUserName());
+			st.setString(2, userEntity.getPassWord());
+			st.setString(3, userEntity.getFullName());
+			st.setString(4, userEntity.getSex());
+			st.setString(5, userEntity.getAddress());
+			st.setString(6, userEntity.getPhone());
+			st.setString(7, userEntity.getEmail());
+			st.executeUpdate();
+
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

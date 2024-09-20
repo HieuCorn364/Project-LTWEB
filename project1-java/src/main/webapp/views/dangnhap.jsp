@@ -63,7 +63,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Đăng
 				nhập</button>
-			<a href="<%=url%>/views/login.jsp">Đăng ký tài khoản mới</a>
+			<a href="http://localhost:8080/project1-java/register">Đăng ký tài khoản mới</a>
 			<p class="mt-5 mb-3 text-muted">&copy; Ngô Trung Hiếu</p>
 		</form>
 	</main>

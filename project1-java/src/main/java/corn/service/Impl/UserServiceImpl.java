@@ -10,6 +10,7 @@ import corn.service.IUserService;
 public class UserServiceImpl implements IUserService {
 
 	public IUserRepository userRepository = new UserRepositoryImpl(); 
+	
 	@Override
 	public UserEntity findByUserName(String userName) {
 		return userRepository.findByUserName(userName);
@@ -25,9 +26,10 @@ public class UserServiceImpl implements IUserService {
 		return false;
 	}
 	@Override
-	public void taoTaoKhoanMoi() {
-		// TODO Auto-generated method stub
-		
+	public void taoTaoKhoanMoi(String tenDangNhap, String matKhau, String hoVaTen, String gioiTinh, String diaChi,
+			String dienThoai, String email) {
+		UserEntity userEntity = new UserEntity(hoVaTen, tenDangNhap, matKhau, gioiTinh, dienThoai, diaChi, email);
+		userRepository.insertUser(userEntity);
 	}
 	
 }
