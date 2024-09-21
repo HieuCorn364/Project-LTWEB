@@ -4,16 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import corn.config.MySQLConnection;
 import corn.entity.UserEntity;
 import corn.repository.IUserRepository;
 
 public class UserRepositoryImpl implements IUserRepository {
-	public List<UserEntity> getUserByNameAndPassword(String userName, String passWord) {
-		List<UserEntity> users = new ArrayList<UserEntity>();
+	public UserEntity getUserByNameAndPassword(String userName, String passWord) {
 		Connection connection = MySQLConnection.getConnection();
 		String query = "select * from user u where u.username = ? and u.password = ?";
 		try {
@@ -26,7 +23,7 @@ public class UserRepositoryImpl implements IUserRepository {
 				user.setId(resultSet.getLong("id"));
 				user.setFullName(resultSet.getString("fullname"));
 				user.setUserName(resultSet.getString("username"));
-				users.add(user);
+				return user;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -39,7 +36,7 @@ public class UserRepositoryImpl implements IUserRepository {
 				e.printStackTrace();
 			}
 		}
-		return users;
+		return null;
 	}
 
 	@Override

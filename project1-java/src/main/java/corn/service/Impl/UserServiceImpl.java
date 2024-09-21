@@ -17,8 +17,8 @@ public class UserServiceImpl implements IUserService {
 	}
 	@Override
 	public boolean checkLogin(String userName, String passWord) {
-		List<UserEntity> list = userRepository.getUserByNameAndPassword(userName, passWord);
-		return list.size() > 0 ? true : false;
+		UserEntity userEntity = userRepository.getUserByNameAndPassword(userName, passWord);
+		return userEntity != null ? true : false;
 	}
 	@Override
 	public boolean checkTrungTenDangNhap(String userName) {
