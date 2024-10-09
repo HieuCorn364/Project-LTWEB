@@ -23,6 +23,7 @@ public class UserRepositoryImpl implements IUserRepository {
 				user.setId(resultSet.getLong("id"));
 				user.setFullName(resultSet.getString("fullname"));
 				user.setUserName(resultSet.getString("username"));
+				user.setRoleId(resultSet.getInt("roleid"));
 				return user;
 			}
 		} catch (SQLException e) {
@@ -52,6 +53,7 @@ public class UserRepositoryImpl implements IUserRepository {
 				user.setId(resultSet.getLong("id"));
 				user.setFullName(resultSet.getString("fullname"));
 				user.setUserName(resultSet.getString("username"));
+				user.setRoleId(resultSet.getInt("roleid"));
 			}
 			return user;
 		} catch (SQLException e) {
@@ -99,8 +101,8 @@ public class UserRepositoryImpl implements IUserRepository {
 	public void insertUser(UserEntity userEntity) {
 		try {
 			Connection con = MySQLConnection.getConnection();
-			String sql = "INSERT INTO user (username, password, fullname, sex, address, phone, email) "
-					+ " VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO user (username, password, fullname, sex, address, phone, email, roleid) "
+					+ " VALUES (?,?,?,?,?,?,?,?)";
 
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, userEntity.getUserName());
@@ -110,6 +112,7 @@ public class UserRepositoryImpl implements IUserRepository {
 			st.setString(5, userEntity.getAddress());
 			st.setString(6, userEntity.getPhone());
 			st.setString(7, userEntity.getEmail());
+			st.setInt(8, userEntity.getRoleId());
 			st.executeUpdate();
 
 			con.close();

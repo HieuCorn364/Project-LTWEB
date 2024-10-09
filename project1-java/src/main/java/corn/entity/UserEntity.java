@@ -10,7 +10,7 @@ public class UserEntity {
 	private String address;
 	private String email;
 	private String createDate;
-	
+	private Integer roleId;
 	
 	public UserEntity() {
 		
@@ -24,6 +24,13 @@ public class UserEntity {
 		this.phone = phone;
 		this.address = address;
 		this.email = email;
+	}
+	
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 	public String getSex() {
 		return sex;

@@ -57,7 +57,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 			</div>
 
 			<div class="checkbox mb-3">
-				<label> <input type="checkbox" value="remember-me">
+				<label> <input type="checkbox" value="remember">
 					Ghi nhớ tài khoản này
 				</label>
 			</div>

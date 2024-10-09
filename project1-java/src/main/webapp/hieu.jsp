@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Ngoo trung hieu</h1>
+	<h1>Ngo trung hieu</h1>
 </body>
 </html>
