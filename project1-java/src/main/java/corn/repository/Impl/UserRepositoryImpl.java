@@ -114,9 +114,50 @@ public class UserRepositoryImpl implements IUserRepository {
 
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	@Override
+	public boolean getEmail(String email) {
+		boolean ketQua = false;
+		Connection con = MySQLConnection.getConnection();
+		try {
+			
+			String sql = "SELECT * FROM user WHERE email=?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, email);
+
+			System.out.println(sql);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				ketQua = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ketQua;
+	}
+
+	@Override
+	public void updatePassWord(String pass, String username) {
+		try {
+			Connection con = MySQLConnection.getConnection();
+			String sql = "UPDATE user SET password = ? WHERE username = ?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, pass);
+			st.setString(2, username);
+			st.executeUpdate();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

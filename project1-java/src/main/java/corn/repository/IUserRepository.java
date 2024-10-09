@@ -1,12 +1,12 @@
 package corn.repository;
 
-import java.util.List;
-
 import corn.entity.UserEntity;
 
 public interface IUserRepository {
-	public UserEntity findByUserName(String userName);
-	public UserEntity getUserByNameAndPassword(String userName, String passWord);
-	public boolean getUserNameToCheck(String userName);
-	public void insertUser(UserEntity userEntity);
+	UserEntity findByUserName(String userName);
+	UserEntity getUserByNameAndPassword(String userName, String passWord);
+	boolean getUserNameToCheck(String userName);
+	void insertUser(UserEntity userEntity);
+	boolean getEmail(String email);
+	void updatePassWord(String pass, String username);
 }

@@ -24,7 +24,6 @@ public class RegisterController extends HttpServlet {
 		requestDispatcher.forward(req, resp);
 	}
 	
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String tenDangNhap = req.getParameter("tenDangNhap");
@@ -64,7 +63,6 @@ public class RegisterController extends HttpServlet {
 		}
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
 		rd.forward(req, resp);
-		
 	}
 	
 }

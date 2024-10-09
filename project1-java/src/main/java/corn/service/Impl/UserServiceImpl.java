@@ -1,7 +1,5 @@
 package corn.service.Impl;
 
-import java.util.List;
-
 import corn.entity.UserEntity;
 import corn.repository.IUserRepository;
 import corn.repository.Impl.UserRepositoryImpl;
@@ -9,7 +7,7 @@ import corn.service.IUserService;
 
 public class UserServiceImpl implements IUserService {
 
-	public IUserRepository userRepository = new UserRepositoryImpl(); 
+	IUserRepository userRepository = new UserRepositoryImpl(); 
 	
 	@Override
 	public UserEntity findByUserName(String userName) {
@@ -22,14 +20,21 @@ public class UserServiceImpl implements IUserService {
 	}
 	@Override
 	public boolean checkTrungTenDangNhap(String userName) {
-		userRepository.getUserNameToCheck(userName);
-		return false;
+		return userRepository.getUserNameToCheck(userName);
 	}
 	@Override
 	public void taoTaoKhoanMoi(String tenDangNhap, String matKhau, String hoVaTen, String gioiTinh, String diaChi,
 			String dienThoai, String email) {
 		UserEntity userEntity = new UserEntity(hoVaTen, tenDangNhap, matKhau, gioiTinh, dienThoai, diaChi, email);
 		userRepository.insertUser(userEntity);
+	}
+	@Override
+	public boolean checkEmail(String email) {
+		return userRepository.getEmail(email);
+	}
+	@Override
+	public void changePass(String pass, String username) {
+		userRepository.updatePassWord(pass, username);
 	}
 	
 }
